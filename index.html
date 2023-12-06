@@ -20,13 +20,27 @@
     }
 
     #logo {
-      width: 100px; /* Adjust as needed */
-      height: 100px; /* Adjust as needed */
-      margin-bottom: 20px;
+      width: 200px; /* Adjust as needed */
+      height: 200px; /* Adjust as needed */
+      margin-bottom: 1px;
+      cursor: pointer;
+      animation: bounce 1s ease infinite;
     }
 
-    h1 {
-      font-size: 2em;
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    h2 {
+      font-size: 1.5em;
       margin-bottom: 20px;
       animation: glow 2s infinite alternate; /* Add animation to text */
       display: flex;
@@ -99,11 +113,20 @@
 <body>
 
   <img src="Saksham_logo.png" alt="Logo" id="logo">
-  <h1>Saksham Premier League<span class="cricket-emoji">&#127951;</span>
+  <h2>Saksham Premier League<span class="cricket-emoji">&#127951;</span>
   </h1>
 
   <a href="login.html"><button id="login-button">Login for Captains</button></a>
   <a href="view-bidding.html"><button id="bidding-button">View Bidding</button></a>
 
 </body>
+
+<script>
+    function animateLogo() {
+      document.getElementById("logo").style.animation = "bounceOnClick 0.5s ease";
+      setTimeout(() => {
+        document.getElementById("logo").style.animation = "bounce 1s ease infinite";
+      }, 500);
+    }
+  </script>
 </html>
