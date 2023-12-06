@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saksham Premier League</title>
   <style>
-     @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
     body {
       margin: 0;
       padding: 0;
@@ -20,11 +21,10 @@
     }
 
     #logo {
-      width: 200px; /* Adjust as needed */
-      height: 200px; /* Adjust as needed */
+      width: 200px;
+      height: 200px;
       margin-bottom: 1px;
       cursor: pointer;
-      animation: bounce 1s ease infinite;
     }
 
     @keyframes bounce {
@@ -38,14 +38,52 @@
         transform: translateY(-10px);
       }
     }
+
+    @keyframes bounceOnClick {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      25%, 75% {
+        opacity: 1;
+      }
+      30%, 70% {
+        transform: translateX(-20px);
+      }
+      35%, 65% {
+        transform: translateX(20px);
+      }
+      40%, 60% {
+        transform: translateX(-10px);
+      }
+      45%, 55% {
+        transform: translateX(10px);
+      }
+      50% {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
     * {
-          -webkit-tap-highlight-color: transparent; /* Disable tap highlight on mobile */
-        }
+      -webkit-tap-highlight-color: transparent; /* Disable tap highlight on mobile */
+    }
 
     h2 {
       font-size: 1.5em;
       margin-bottom: 20px;
-      animation: glow 2s infinite alternate; /* Add animation to text */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -54,15 +92,7 @@
     .cricket-emoji {
       font-size: 1.5em;
       margin: 0 5px;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #0ef, 0 0 20px #0ef, 0 0 30px #0ef;
-      }
-      to {
-        text-shadow: 0 0 20px #0ef, 0 0 30px #0ef, 0 0 40px #0ef;
-      }
+      color: #0ef; /* Added color for the typing animation */
     }
 
     a {
@@ -111,25 +141,71 @@
         transform: translateX(100%);
       }
     }
+
+    #smile-emoji {
+      font-size: 2em;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
   </style>
 </head>
 <body>
 
-  <img src="Saksham_logo.png" alt="Logo" id="logo">
-  <h2>Saksham Premier League<span class="cricket-emoji">&#127951;</span>
-  </h1>
+  <h2 id="typing-text"><span class="cricket-emoji">&#127951;</span></h2>
+  <img src="Saksham_logo.png" alt="Logo" id="logo" onclick="animateLogo()">
+  <div id="smile-emoji">&#128515;</div>
 
   <a href="login.html"><button id="login-button">Login for Captains</button></a>
   <a href="view-bidding.html"><button id="bidding-button">View Bidding</button></a>
 
-</body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var hasAnimationPlayed = false;
 
-<script>
+      var typingText = document.getElementById("typing-text");
+      var text = "Saksham Premier League";
+      var index = 0;
+
+      function type() {
+        if (index < text.length) {
+          typingText.innerHTML += text.charAt(index);
+          index++;
+          setTimeout(type, 150);
+        } else {
+          setTimeout(erase, 1000);
+        }
+      }
+
+      function erase() {
+        if (index > 0) {
+          typingText.innerHTML = text.substring(0, index - 1);
+          index--;
+          setTimeout(erase, 50);
+        } else {
+          setTimeout(type, 500);
+        }
+      }
+
+      // Check if animation has played before
+      if (!hasAnimationPlayed) {
+        type();
+        hasAnimationPlayed = true;
+      }
+    });
+
     function animateLogo() {
-      document.getElementById("logo").style.animation = "bounceOnClick 0.5s ease";
+      var logo = document.getElementById("logo");
+      var smileEmoji = document.getElementById("smile-emoji");
+
+      logo.style.animation = "bounceOnClick 2s ease";
+      smileEmoji.style.animation = "fadeIn 1s forwards";
+
       setTimeout(() => {
-        document.getElementById("logo").style.animation = "bounce 1s ease infinite";
-      }, 500);
+        logo.style.animation = ""; // Remove the animation after completion
+        smileEmoji.style.animation = ""; // Remove the animation after completion
+      }, 2000);
     }
   </script>
+</body>
 </html>
