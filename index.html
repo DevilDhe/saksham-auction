@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saksham Premier League</title>
+  <style>
+     @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #logo {
+      width: 100px; /* Adjust as needed */
+      height: 100px; /* Adjust as needed */
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate; /* Add animation to text */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cricket-emoji {
+      font-size: 1.5em;
+      margin: 0 5px;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #0ef, 0 0 20px #0ef, 0 0 30px #0ef;
+      }
+      to {
+        text-shadow: 0 0 20px #0ef, 0 0 30px #0ef, 0 0 40px #0ef;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      position: relative;
+      width: 200px;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #fff; /* White round border */
+      border-radius: 25px; /* Round border */
+      cursor: pointer;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    #login-button, #bidding-button {
+      background-color: #000;
+      color: #fff;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 20%, rgba(0, 238, 255, 0.2) 40%, transparent 80%);
+      transform: translateX(-50%);
+      opacity: 0;
+      pointer-events: none;
+      animation: shine 1.5s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(100%);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="your_logo_image_url.png" alt="Logo" id="logo">
+  <h1>
+    <span class="cricket-emoji">&#127951;</span>
+    Saksham Premier League
+    <span class="cricket-emoji">&#127951;</span>
+  </h1>
+
+  <a href="login.html"><button id="login-button">Login for Captains</button></a>
+  <a href="view-bidding.html"><button id="bidding-button">View Bidding</button></a>
+
+</body>
+</html>
